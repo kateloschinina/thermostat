@@ -5,6 +5,7 @@ describe('Feature tests:', function(){
   var thermo;
   var tempChange = 3;
   var defaultTemp = 20;
+  var minTemperature = 10;
 
   beforeEach(function(){
     thermo = new Thermostat();
@@ -23,5 +24,11 @@ describe('Feature tests:', function(){
   it('User can decrease temp of thermostat', function(){
     thermo.decreaseTemperature(tempChange);
     expect(thermo.getDegrees()).toEqual(defaultTemp - tempChange);
+  });
+  // The minimum temperature is 10 degrees
+  it('cannot go below '+minTemperature+' degrees', function(){
+    thermo._degrees = minTemperature;
+    thermo.decreaseTemperature(tempChange);
+    expect(thermo.getDegrees()).toEqual(minTemperature);    
   });
 });

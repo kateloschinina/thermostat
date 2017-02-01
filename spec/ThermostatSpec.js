@@ -6,6 +6,7 @@ describe('Thermostat', function(){
   var amount = 15;
   var tempChange = 3;
   var defaultTemp = 20;
+  var minTemperature = 10;
 
   beforeEach(function(){
     thermo = new Thermostat();
@@ -34,6 +35,12 @@ describe('Thermostat', function(){
       thermo.decreaseTemperature(tempChange);
       expect(thermo.getDegrees()).toEqual(defaultTemp - tempChange);
     });
+    it('does not allow temoperature to go below '+minTemperature, function(){
+      thermo._degrees = minTemperature;
+      thermo.decreaseTemperature(tempChange);
+      expect(thermo.getDegrees()).toEqual(minTemperature); 
+    });
   });
+
 
 });
