@@ -73,5 +73,16 @@ describe('Thermostat', function(){
     });
   });
 
+  describe("#currentUsage", function(){
+    it("Shows the current energy usage level", function(){
+      thermo._degrees = minTemperature;
+      expect(thermo.currentUsage()).toEqual('low-usage');
+      thermo._degrees = defaultTemp;
+      expect(thermo.currentUsage()).toEqual('medium-usage');
+      thermo._degrees = maxTempSavingOff;
+      expect(thermo.currentUsage()).toEqual('high-usage');
+    });
+  });
+
 
 });

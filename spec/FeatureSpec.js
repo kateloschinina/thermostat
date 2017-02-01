@@ -63,4 +63,13 @@ describe('Feature tests:', function(){
     thermo.resetTemperatureToDefault();
     expect(thermo.getDegrees()).toEqual(defaultTemp);
   });
+  // You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+  it("Shows the current energy usage level", function(){
+    thermo._degrees = minTemperature;
+    expect(thermo.currentUsage()).toEqual('low-usage');
+    thermo._degrees = defaultTemp;
+    expect(thermo.currentUsage()).toEqual('medium-usage');
+    thermo._degrees = maxTempSavingOff;
+    expect(thermo.currentUsage()).toEqual('high-usage');
+  });
 });

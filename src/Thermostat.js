@@ -29,3 +29,13 @@ Thermostat.prototype._maxTemperature = function() {
 Thermostat.prototype.resetTemperatureToDefault = function() {
   this._degrees = this._defaultTemp;
 };
+
+Thermostat.prototype.currentUsage = function() {
+  if (this.getDegrees() < 18) {
+    return 'low-usage'
+  };
+  if (this.getDegrees() < 25) {
+    return 'medium-usage'
+  };
+  return 'high-usage';
+};
