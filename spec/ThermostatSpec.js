@@ -7,6 +7,8 @@ describe('Thermostat', function(){
   var tempChange = 3;
   var defaultTemp = 20;
   var minTemperature = 10;
+  var maxTempSavingOn = 25;
+  var maxTempSavingOff = 32;
 
   beforeEach(function(){
     thermo = new Thermostat();
@@ -28,6 +30,18 @@ describe('Thermostat', function(){
       thermo.increaseTemperature(tempChange);
       expect(thermo.getDegrees()).toEqual(defaultTemp + tempChange);
     });
+    it('cannot go above '+maxTempSavingOn+' if power save mode is on', function(){
+      thermo._powerSaving = true;
+      thermo._degrees = maxTempSavingOn;
+      thermo.increaseTemperature(tempChange);
+      expect(thermo.getDegrees()).toEqual(maxTempSavingOn);
+    });
+    it('cannot go above '+maxTempSavingOff+' if power save mode is on', function(){
+      thermo._powerSaving = false;
+      thermo._degrees = maxTempSavingOff;
+      thermo.increaseTemperature(tempChange);
+      expect(thermo.getDegrees()).toEqual(maxTempSavingOff);
+    });
   });
 
   describe("#decreaseTemperature", function(){
@@ -38,7 +52,7 @@ describe('Thermostat', function(){
     it('does not allow temoperature to go below '+minTemperature, function(){
       thermo._degrees = minTemperature;
       thermo.decreaseTemperature(tempChange);
-      expect(thermo.getDegrees()).toEqual(minTemperature); 
+      expect(thermo.getDegrees()).toEqual(minTemperature);
     });
   });
 
