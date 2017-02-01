@@ -47,4 +47,10 @@ describe('Feature tests:', function(){
     thermo.increaseTemperature(tempChange);
     expect(thermo.getDegrees()).toEqual(maxTempSavingOff);
   });
+  // Power saving mode is on by default
+  it('power saving mode is on by default', function(){
+    thermo._degrees = maxTempSavingOn;
+    thermo.increaseTemperature(tempChange);
+    expect(thermo.getDegrees()).toEqual(maxTempSavingOn);
+  });
 });

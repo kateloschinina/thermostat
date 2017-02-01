@@ -42,6 +42,11 @@ describe('Thermostat', function(){
       thermo.increaseTemperature(tempChange);
       expect(thermo.getDegrees()).toEqual(maxTempSavingOff);
     });
+    it('power saving mode is on by default', function(){
+      thermo._degrees = maxTempSavingOn;
+      thermo.increaseTemperature(tempChange);
+      expect(thermo.getDegrees()).toEqual(maxTempSavingOn);
+    });
   });
 
   describe("#decreaseTemperature", function(){
