@@ -5,13 +5,17 @@ describe('Thermostat', function(){
   var thermo;
   var amount = 15;
   var tempChange = 3;
-  var defaultTemp = 20;
-  var minTemperature = 10;
-  var maxTempSavingOn = 25;
-  var maxTempSavingOff = 32;
+  var defaultTemp;
+  var minTemperature;
+  var maxTempSavingOn;
+  var maxTempSavingOff;
 
   beforeEach(function(){
     thermo = new Thermostat();
+    defaultTemp = thermo._defaultTemp;
+    minTemperature = thermo._minTemperature;
+    maxTempSavingOn = thermo._maxTempSavingOn;
+    maxTempSavingOff = thermo._maxTempSavingOff;
   });
 
   it('has '+defaultTemp+' degrees by default', function(){
@@ -58,6 +62,14 @@ describe('Thermostat', function(){
       thermo._degrees = minTemperature;
       thermo.decreaseTemperature(tempChange);
       expect(thermo.getDegrees()).toEqual(minTemperature);
+    });
+  });
+
+  describe('#reset', function(){
+    it('User can reset temperature to default '+defaultTemp, function(){
+      thermo._degrees = maxTempSavingOn;
+      thermo.resetTemperatureToDefault();
+      expect(thermo.getDegrees()).toEqual(defaultTemp);
     });
   });
 
