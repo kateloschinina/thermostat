@@ -19,4 +19,9 @@ describe('Feature tests:', function(){
     thermo.increaseTemperature(tempChange);
     expect(thermo.getDegrees()).toEqual(defaultTemp + tempChange);
   });
+  // You can decrease the temperature with a down function
+  it('User can decrease temp of thermostat', function(){
+    thermo.decreaseTemperature(tempChange);
+    expect(thermo.getDegrees()).toEqual(defaultTemp - tempChange);
+  });
 });

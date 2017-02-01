@@ -23,12 +23,17 @@ describe('Thermostat', function(){
   });
 
   describe("#increaseTemperature", function(){
-    it("Increases degrees by specified amount", function(){    
+    it("Increases degrees by specified amount", function(){
       thermo.increaseTemperature(tempChange);
       expect(thermo.getDegrees()).toEqual(defaultTemp + tempChange);
     });
-
   });
 
+  describe("#decreaseTemperature", function(){
+    it("Decreases degrees by specified amount", function(){
+      thermo.decreaseTemperature(tempChange);
+      expect(thermo.getDegrees()).toEqual(defaultTemp - tempChange);
+    });
+  });
 
 });

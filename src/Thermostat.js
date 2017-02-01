@@ -11,3 +11,7 @@ Thermostat.prototype.getDegrees = function(){
 Thermostat.prototype.increaseTemperature = function(tempChange){
   this._degrees += tempChange;
 };
+
+Thermostat.prototype.decreaseTemperature = function(tempChange){
+  this._degrees -= tempChange;
+};
